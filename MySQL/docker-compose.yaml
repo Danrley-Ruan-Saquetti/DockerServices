@@ -1,0 +1,16 @@
+name: local.services.mysql
+
+services:
+  services.mysql:
+    image: mysql:latest
+    restart: always
+    container_name: services.mysql
+    env_file:
+      - ./.env
+    volumes:
+      - ./storage:/var/lib/mysql
+
+volumes:
+  db-data:
+    name: services.mysql.volume
+    driver: local

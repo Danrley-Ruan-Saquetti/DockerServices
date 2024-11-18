@@ -1,0 +1,15 @@
+name: local_services
+
+services:
+  services.redis:
+    image: redis:latest
+    restart: always
+    container_name: services.redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    env_file:
+      - ./.env
+    ports:
+      - 6379:6379
+    volumes:
+      - ./storage/data:/data
+      - ./storage/redis.conf:/usr/local/etc/redis/redis.conf
