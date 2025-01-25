@@ -1,0 +1,11 @@
+services:
+    services.cpp:
+        image: gcc:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: services.cpp
+        volumes:
+            - .:/app
+            - ./build:/app/build
+        command: bash -c "cmake -S . -B build && make -C build && ./build/program"
