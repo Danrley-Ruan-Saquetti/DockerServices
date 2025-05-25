@@ -18,4 +18,4 @@ RUN cmake ../
 WORKDIR /app
 COPY src ./src
 
-CMD ["bash", "-c", "cd build && make && ./build/program"]
+CMD ["bash", "-c", "cd build && make && ./build/docker_cpp"]

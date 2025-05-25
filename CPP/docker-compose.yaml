@@ -8,4 +8,4 @@ services:
         volumes:
             - .:/app
             - ./build:/app/build
-        command: bash -c "cmake -S . -B build && make -C build && ./build/program"
+        command: bash -c "cmake -S . -B build && make -C build && ./build/docker_cpp"

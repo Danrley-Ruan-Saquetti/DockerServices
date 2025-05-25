@@ -1,19 +1,16 @@
-cmake_minimum_required(VERSION 2.8.12)
-
-project(GameEngine)
+cmake_minimum_required(VERSION 3.15)
+project(docker_cpp VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-set(Sample_VERSION_MAJOR 0)
-set(Sample_VERSION_MINOR 0)
-set(Sample_VERSION_PATCH 1)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-configure_file(
-  "${PROJECT_SOURCE_DIR}/config.h.in"
-  "${PROJECT_BINARY_DIR}/config.h"
-)
-
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-
+include_directories(include)
 include_directories("${PROJECT_BINARY_DIR}")
 
-add_executable(program src/main.cpp)
+file(GLOB_RECURSE SOURCES
+  CONFIGURE_DEPENDS
+  src/*.cpp
+)
+
+add_executable(docker_cpp ${SOURCES})
