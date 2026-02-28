@@ -1,0 +1,36 @@
+name: pgroot
+
+services:
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile.dev
+    container_name: php
+    volumes:
+      - .:/var/www
+    profiles:
+      - http
+      - cli
+      - test
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - .:/app
+    working_dir: /app
+    profiles:
+      - deps
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    profiles:
+      - http
